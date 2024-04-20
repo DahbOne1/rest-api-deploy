@@ -104,10 +104,10 @@ export class MovieModel {
     return movies;
   }
 
-  static async delete({ id }) {
+  static delete = async ({ id }) => {
     const [movies] = await connection.query(
       `SELECT BIN_TO_UUID(id) id FROM movie
-        WHERE id = ?;`,
+        WHERE id = UUID_TO_BIN(?);`,
       [id]
     );
 
@@ -123,10 +123,21 @@ export class MovieModel {
       [id]
     );
 
-    return movies;
-  }
+    return [movies];
+  };
 
   static async update({ id, input }) {
-    return "sds";
+    const { title, year, director, duration, poster, rate } = input;
+    const result = await connection.query(
+      `UPDATE movie SET title = ?, year = ?, director = ?, duration = ?, poster = ?, rate = ?
+      WHERE id =  UUID_TO_BIN(?);`,
+      [title, year, director, duration, poster, rate, id]
+    );
+
+    const [movies] = await connection.query(
+      "SELECT title, year, director,duration, poster, rate, BIN_TO_UUID(id) id FROM movie WHERE id = UUID_TO_BIN(?);",
+      [id]
+    );
+    return movies;
   }
 }

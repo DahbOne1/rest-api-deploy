@@ -2,7 +2,7 @@
 GET http://localhost:1234/movies
 
 ### Recuperar una pelicula por id
-GET http://localhost:1234/movies/8d9794fa-fd41-11ee-8c02-c4651603e82d
+GET http://localhost:1234/movies/a24d44ea-fe7a-11ee-94a9-c4651603e82d
 
 ### Recuperar todas las peliculas por un genero
 GET http://localhost:1234/movies?genre=Crime
@@ -24,14 +24,18 @@ Content-Type: application/json
     ]
 }
 
-
-###Actualizar una pelicula
-PATCH http://localhost:1234/movies/dcdd0fad-a94c-4810-8acc-5f108d3b18c3
+###Actualizar una pnelicula
+PATCH http://localhost:1234/movies/b5ca0034-fe74-11ee-8c02-c4651603e82d
 Content-Type: application/json
 
 {
-    "year": 2000
+    "title": "The Godfather 2",
+    "year": 2000,
+    "director": "Francis Ford Coppola",
+    "duration": 175,
+    "poster": "https://img.gruugo.com/product/4/49/14441494_max.jpg",
+    "rate": 3.4
 }
 
 ###Eliminar una peliculas
-DELETE http://localhost:1234/movies/i
+DELETE http://localhost:1234/movies/a24d44ea-fe7a-11ee-94a9-c4651603e82d
